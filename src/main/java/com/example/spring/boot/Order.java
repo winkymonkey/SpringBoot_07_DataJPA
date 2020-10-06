@@ -1,49 +1,41 @@
 package com.example.spring.boot;
 
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
-import javax.persistence.OrderBy;
 import javax.persistence.Table;
-import javax.persistence.Temporal;
-import javax.persistence.TemporalType;
 
 
 @Entity
-@Table(name = "Order")
+@Table(name = "T_ORDER")
 public class Order {
 	
 	@Id
-	@GeneratedValue(strategy = GenerationType.AUTO)
-	@Column(name = "oid")
-	private int oid;
+	@GeneratedValue
+	@Column(name = "orderId")
+	private long orderId;
 	
 	@Column(name = "deliveryLocation")
 	private String deliveryLocation;
 	
-	@Temporal(value = TemporalType.DATE)
-	@Column(name = "orderDate")
-	private Date orderDate;
+	@Column(name = "totalPrice")
+	private long totalPrice;
 	
-	@OrderBy("lineId")
-	@OneToMany(cascade = { CascadeType.ALL }, mappedBy = "order",fetch = FetchType.EAGER)
-	private List<OrderLineItem> orderItems = new ArrayList<>();
+	@OneToMany(mappedBy = "order", cascade = CascadeType.ALL)
+	private List<OrderItem> items = new ArrayList<>();
 	
 	
-	public int getOid() {
-		return oid;
+	public long getOrderId() {
+		return orderId;
 	}
-	public void setOid(int oid) {
-		this.oid = oid;
+	public void setOrderId(long orderId) {
+		this.orderId = orderId;
 	}
 	public String getDeliveryLocation() {
 		return deliveryLocation;
@@ -51,17 +43,17 @@ public class Order {
 	public void setDeliveryLocation(String deliveryLocation) {
 		this.deliveryLocation = deliveryLocation;
 	}
-	public Date getOrderDate() {
-		return orderDate;
+	public long getTotalPrice() {
+		return totalPrice;
 	}
-	public void setOrderDate(Date orderDate) {
-		this.orderDate = orderDate;
+	public void setTotalPrice(long totalPrice) {
+		this.totalPrice = totalPrice;
 	}
-	public List<OrderLineItem> getOrderItems() {
-		return orderItems;
+	public List<OrderItem> getItems() {
+		return items;
 	}
-	public void setOrderItems(List<OrderLineItem> orderItems) {
-		this.orderItems = orderItems;
+	public void setItems(List<OrderItem> items) {
+		this.items = items;
 	}
 	
 }

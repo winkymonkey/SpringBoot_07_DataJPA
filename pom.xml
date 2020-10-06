@@ -20,24 +20,37 @@
 		<version>2.1.8.RELEASE</version>
 		<relativePath /> <!-- lookup parent from repository -->
 	</parent>
-
+	
+	
 	<dependencies>
+		<!-- for allowing remote call (optional) -->
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-web</artifactId>
+		</dependency>
+		
+		<!-- for Spring Data support -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-data-jpa</artifactId>
 		</dependency>
+		
+		<!-- JDBC connector for MySQL  -->
 		<dependency>
 			<groupId>mysql</groupId>
 			<artifactId>mysql-connector-java</artifactId>
 			<scope>runtime</scope>
 		</dependency>
+		
+		<!-- for testing -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-test</artifactId>
 			<scope>test</scope>
 		</dependency>
 	</dependencies>
-
+	
+	
 	<build>
 		<plugins>
 			<plugin>
