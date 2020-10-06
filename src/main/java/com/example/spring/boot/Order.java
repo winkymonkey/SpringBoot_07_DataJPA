@@ -11,6 +11,8 @@ import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 
 @Entity
 @Table(name = "T_ORDER")
@@ -28,6 +30,7 @@ public class Order {
 	private long totalPrice;
 	
 	@OneToMany(mappedBy = "order", cascade = CascadeType.ALL)
+	@JsonIgnoreProperties("order")									//should be added to avoid infinite recursive references 
 	private List<OrderItem> items = new ArrayList<>();
 	
 	

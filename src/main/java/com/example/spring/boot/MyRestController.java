@@ -25,14 +25,19 @@ public class MyRestController {
 	
 	@PutMapping("/create")
     public Order createOrderByID(@RequestBody Order order) {
+		for(OrderItem item : order.getItems()) {
+			item.setOrder(order);
+		}
 		orderRepository.save(order);
         return order;
     }
 	
-	@GetMapping(value = "/{deliveryLocation}")
-    public Order getOrderByTotalPrice(@PathVariable String totalPrice) {
+	@GetMapping(value = "/{totalPrice}")
+    public Order getOrderByTotalPrice(@PathVariable long totalPrice) {
         System.out.println("Getting order with totalPrice=" + totalPrice);
-        return orderRepository.findByTotalPrice(totalPrice);
+        Order order = orderRepository.findByTotalPrice(totalPrice);
+        System.out.println(order.getItems());
+        return order;
     }
 	
 	@DeleteMapping("/{orderId}")

@@ -15,7 +15,7 @@ public interface OrderRepository extends CrudRepository<Order, Long> {
 	@Query(value = FIND_BY_DELIVERYLOCATION, nativeQuery = true)
 	public Order findByDeliveryLocation(String deliveryLocation);
 	
-	//@Query(value = FIND_BY_TOTALPRICE)
-	public Order findByTotalPrice(String totalPrice);
+	@Query(value = FIND_BY_TOTALPRICE)
+	public Order findByTotalPrice(long totalPrice);
 	
 }

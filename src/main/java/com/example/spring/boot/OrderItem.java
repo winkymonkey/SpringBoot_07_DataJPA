@@ -9,6 +9,8 @@ import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 
 @Entity
 @Table(name = "T_ORDER_ITEM")
@@ -24,6 +26,7 @@ public class OrderItem {
 	
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "fk_oid")
+	@JsonIgnoreProperties("items")			//should be added to avoid infinite recursive references
 	private Order order;
 	
 	
